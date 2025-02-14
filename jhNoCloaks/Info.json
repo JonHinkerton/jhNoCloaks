@@ -1,0 +1,12 @@
+﻿{
+  "Id": "jhNoCloaks",
+  "DisplayName": "No Capes",
+  "Author": "jonHinkerton",
+  "Version": "1.0.0",
+  "ManagerVersion": "0.25.0",
+  "Requirements": [],
+  "AssemblyName": "jhNoCloaks.dll",
+  "EntryMethod": "jhNoCloaks.Main.Load",
+  "HomePage": "",
+  "Repository": ""
+}
