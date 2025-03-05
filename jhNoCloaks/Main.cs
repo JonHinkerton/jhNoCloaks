@@ -17,15 +17,9 @@ namespace jhNoCloaks
         {
             log = modEntry.Logger;
 
-            modEntry.OnGUI = OnGUI;
             HarmonyInstance = new Harmony(modEntry.Info.Id);
             HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
             return true;
-        }
-
-        public static void OnGUI(UnityModManager.ModEntry modEntry)
-        {
-
         }
 
         [HarmonyPatch(typeof(Character))]
@@ -35,30 +29,10 @@ namespace jhNoCloaks
             [HarmonyPrefix]
             private static bool AddEquipmentEntity(Character __instance, EquipmentEntity ee)
             {
-                if (ee.name.ToString().ToLower().Contains("cape") || ee.name.ToString().ToLower().Contains("medi"))
+                if (ee.name.ToString().ToLower().Contains("cape"))
                 {
                     log.Log("jhnocloak: removing " + ee.name.ToString());
                     return false;
-                }
-
-                return true;
-            }
-
-            [HarmonyPatch(nameof(Character.AddEquipmentEntities), [typeof(IEnumerable<EquipmentEntityLink>), typeof(bool)])]
-            [HarmonyPrefix]
-            private static bool AddEquipmentEntities(Character __instance, IEnumerable<EquipmentEntityLink> ees, bool saved = false)
-            {
-                foreach (var e in ees)
-                {
-                    var eid = e.AssetId;
-
-
-                    
-                    //if (e..name.ToString().ToLower().Contains("medi"))
-                    //{
-                    //    log.Log("jhnocloak: removing " + ee.name.ToString());
-                    //    return false;
-                    //}
                 }
 
                 return true;
